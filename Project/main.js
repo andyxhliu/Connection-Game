@@ -19,9 +19,6 @@ function addBlocksToListen() {
     block.setAttribute("class", "block");
     container.appendChild(block);
     blocksArray.push(block);
-    // block.addEventListener("mouseup", function(){
-    //   flag=1;
-    // }, false);
   }
   blocksStarter();
 }
@@ -33,13 +30,16 @@ function blocksStarter() {
 
 function addEventListener() {
   blockRed.addEventListener("mousedown", function() {
+    flag=0;
     for (var i=0; i<36; i++) {
       var blockId = document.getElementsByClassName("block")[i]; 
       blockId.addEventListener("mouseover", function() {
       determineDragOrMove(); 
         if (flag===0) {
           console.log("Hello");
-        } 
+        } else {
+          flag=1;
+        }
       });
     };
   });
@@ -50,6 +50,6 @@ function determineDragOrMove() {
   var blocks = document.getElementsByClassName("block")[i];
   blocks.addEventListener("mouseup", function(){
     flag=1;
-    }, false);
+    });
   }
 }
