@@ -3,8 +3,6 @@ document.body.onload = addContainer;
 var container = document.createElement('div');
 var blocksArray=[];
 var block;
-var flag=0;
-
 
 function addContainer() {
   container.setAttribute("class", "container");
@@ -30,26 +28,13 @@ function blocksStarter() {
 
 function addEventListener() {
   blockRed.addEventListener("mousedown", function() {
-    flag=0;
-    for (var i=0; i<36; i++) {
-      var blockId = document.getElementsByClassName("block")[i]; 
-      blockId.addEventListener("mouseover", function() {
-      determineDragOrMove(); 
-        if (flag===0) {
-          console.log("Hello");
-        } else {
-          flag=1;
+    this.className = "block selected";
+    blocksArray.forEach(function(block, i) {
+      block.addEventListener("mouseover", function() {
+        if(event.buttons === 1 && (blocksArray[i-1].className === "block selected"||blocksArray[i-6].className === "block selected" ||blocksArray[i+1].className === "block selected" || blocksArray[i+6].className === "block selected")) {
+          this.className = "block selected";
         }
       });
-    };
-  });
-}
-
-function determineDragOrMove() {
-  for (var i=0; i<36; i++) {
-  var blocks = document.getElementsByClassName("block")[i];
-  blocks.addEventListener("mouseup", function(){
-    flag=1;
     });
-  }
+  });
 }

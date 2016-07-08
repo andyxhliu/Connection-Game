@@ -20,3 +20,7 @@
 #blockRed {
   background-color: red;
 }
+
+.block.selected {
+  background-color: blue;
+}
