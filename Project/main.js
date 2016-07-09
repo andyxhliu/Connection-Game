@@ -103,9 +103,13 @@ function addHelpButton() {
 }
 
 function help() {
+  var backButton = document.createElement('div');
+  backButton.setAttribute("class", "backButton");
   helpScreen.setAttribute("class", "helpScreen");
   document.getElementsByClassName("container")[0].appendChild(helpScreen);
   helpScreen.innerHTML="Connect the blocks with the same color, without interfer with other colors and fill all the blocks!";
+  document.getElementsByClassName("helpScreen")[0].appendChild(backButton);
+  backButton.innerHTML="Go back";
 }
 
 /*Try to add the help button and pop up screen*/
