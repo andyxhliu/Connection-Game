@@ -1,3 +1,4 @@
+
 document.body.onload = addContainer;
 
 var container = document.createElement('div');
@@ -23,7 +24,9 @@ function addBlocksToListen() {
 }
 
 function blocksStarter() {
-  blocksArray[0].setAttribute("id", "initRed");
+  blocksArray[7].setAttribute("id", "initRed");
+  blocksArray[35].setAttribute("id", "endRed");
+  blocksArray[22].setAttribute("id", "initBlue");
   addEventListener();
 }
 
@@ -32,8 +35,11 @@ function addEventListener() {
     this.className = "block red";
     blocksArray.forEach(function(block, i) {
       block.addEventListener("mouseover", function() {
-        if(event.buttons === 1 && (blocksArray[i-1].className === "block red"||blocksArray[i-6].className === "block red" ||blocksArray[i+1].className === "block red" || blocksArray[i+6].className === "block red")) {
+        if(event.buttons === 1 && this.id!=="initBlue" && this.className==="block" && (blocksArray[i-1].className === "block red"||blocksArray[i-6].className === "block red" ||blocksArray[i+1].className === "block red" || blocksArray[i+6].className === "block red")) {
           this.className = "block red";
+          if (this.id==="endRed") {
+            console.log("You found it");
+          }
           checkWin();
         } 
       });
@@ -47,14 +53,13 @@ function checkWin() {
     if(blocksArray[j].className!=="block"){
       counter++;
     }
-    if (counter===(blocksArray.length)) {
+    if (counter===(blocksArray.length-1)) {
       console.log("You win!");
     }
   }
 }
 
-/*Above is for win condition completed*/
-
+/*Above is to allow define destination and will not cross block with another colors*/
 
 
 
