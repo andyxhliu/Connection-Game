@@ -1,6 +1,9 @@
 document.body.onload = addContainer;
 
 var container = document.createElement('div');
+var resetButton = document.createElement('div');
+var helpButton = document.createElement('div');
+var helpScreen = document.createElement('div');
 var blocksArray=[];
 var block;
 var j;
@@ -8,7 +11,9 @@ var j;
 function addContainer() {
   container.setAttribute("class", "container");
   document.body.appendChild(container);
+  addResetButton();
   addBlocksToListen();
+  addHelpButton();
 }
 
 function addBlocksToListen() {
@@ -43,9 +48,16 @@ function addEventListener(init,end, Color, OtherColorAI, OtherColorAE, OtherColo
           this.className = "block"+" "+ Color;
           if (this.id===end) {
             console.log("You found it");
+            /*How to disable the event listener? So user won't go pass it?*/
           }
           checkWin();
-        } 
+        // } else if (event.buttons===0) {
+        //   blocksArray.forEach(function(block,i) {
+        //     var toBeCleared = document.getElementsByClassName("block"+" "+ Color);
+        //     toBeCleared.className="block";
+        //   })  
+          /*How to istinguish whether or not mouse ip Yet?*/
+        }
       });
     });
   });
@@ -63,10 +75,26 @@ function checkWin() {
   }
 }
 
-/*Above is to create total six colors on the same board and solve any bugs*/
+function addResetButton() {
+  resetButton.setAttribute("class", "reset");
+  resetButton.innerHTML="Wipe";
+  document.body.appendChild(resetButton);
+  resetButtonToListen();
+}
 
+function resetButtonToListen() {
+  resetButton.addEventListener("click", function() {
+    reset();
+  })
+}
 
+function reset() {
+  blocksArray.forEach(function(block,i) {
+    block.className="block";
+  })
+}
 
+/*Above is to add the reset button*/
 
 
 
