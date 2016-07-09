@@ -215,7 +215,6 @@ function addEventListenerMouseUp() {
 
 function reset(colors) {
   colors.forEach(function(color,i) {
-    console.log(colors);
     blocksArray.forEach(function(block,i) {
       if(block.className ===("block"+" "+ color)) {
         block.className="block";
@@ -224,6 +223,17 @@ function reset(colors) {
   })
 }
 
+// $(function() {
+//   console.log("jQuery Loaded");
+//     var x = 50;
+//     var xId=setInterval(function(){
+//       $('html').css('background-position', x + 'px 0');
+//       x-=1;
+//       if (x===0) {
+//         clearInterval(xId);
+//       }
+//     }, 10);
+// });
 
 
 

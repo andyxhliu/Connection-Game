@@ -1,11 +1,24 @@
+html {
+  background: url("images/backGround.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+}
+
+
 .container {
   width: 700px;
   height: 530px;
-  border: 1px solid black;
+/*  border: 1px solid white;*/
   margin: auto;
   padding-left: 15px;
   padding-top: 10px;
-  margin-top: 30px;
+  margin-top: 40px;
+
 /*  display: inline-block;*/
 /*  float: left;*/
 }
@@ -13,7 +26,7 @@
 .blocks {
   width: 500px;
   height: 500px;
-  border: 1px solid black;
+  border: none;
   padding-left: 15px;
   padding-top: 10px;
   float: left;
@@ -23,107 +36,130 @@
   display: inline-block;
   width:80px;
   height: 80px;
-  border: 1px solid black;
+  border: 2px solid rgb(22, 21, 45);
+  border-radius: 10px;
   margin-bottom: -5px;
   margin-left: -1px;
-  background-color: none;
+  background-color: rgba(67, 63, 123, 0.5)
 }
 
 #initRed {
-  background-color: red;
+  background-image: url("images/redKey.png");
+  background-size: cover;
 }
 
 #endRed {
-  background-color: red;
+  background-image: url("images/redHole.png");
+  background-size: cover;
 }
 
 #initBlue {
-  background-color: blue;
+  background-image: url("images/blueKey.png");
+  background-size: cover;
 }
 
 #endBlue {
-  background-color: blue;
+  background-image: url("images/blueHole.png");
+  background-size: cover;
 }
 
 #initGreen {
-  background-color: green;
+  background-image: url("images/greenKey.png");
+  background-size: cover;
 }
 
 #endGreen {
-  background-color: green;
+  background-image: url("images/greenHole.png");
+  background-size: cover;
 }
 
 #initPurple {
-  background-color: purple;
+  background-image: url("images/purpleKey.png");
+  background-size: cover;
 }
 
 #endPurple {
-  background-color: purple;
+  background-image: url("images/purpleHole.png");
+  background-size: cover;
 }
 
 #initYellow {
-  background-color: yellow;
+  background-image: url("images/yellowKey.png");
+  background-size: cover;
 }
 
 #endYellow {
-  background-color: yellow;
+  background-image: url("images/yellowHole.png");
+  background-size: cover;
 }
 
 #initAqua {
-  background-color: aqua;
+  background-image: url("images/aquaKey.png");
+  background-size: cover;
 }
 
 #endAqua {
-  background-color: aqua;
+  background-image: url("images/aquaHole.png");
+  background-size: cover;
 }
 
 
 .block.red {
-  background-color: red;
+  background-color: rgb(141,28,22);
 }
 
 .block.blue {
-  background-color: blue;
+  background-color: rgb(1,21,78);
 }
 
 .block.green {
-  background-color: green;
+  background-color: rgb(44,71,27);
 }
 
 .block.purple {
-  background-color: purple;
+  background-color: rgb(91,29,113);
 }
 
 .block.yellow {
-  background-color: yellow;
+  background-color: rgb(107,79,17);
 }
 
 .block.aqua {
-  background-color: aqua;
+  background-color: rgb(36,95,157);
 }
 
 .reset {
-  width: 50px;
-  height:30px;
-  border: 1px solid black;
-  margin: auto;
+  width: 100px;
+  height:40px;
+  font-size:30px;
+  border-radius: 5px;
   padding-top: 10px;
   text-align: center;
   margin-top: 10px;
+  margin-left: 20px;
+  background-color: black;
+  display: block;
+  position: absolute;;
 }
 
 .help {
-  width: 50px;
-  height:30px;
+  width: 100px;
+  height:40px;
+  font-size: 30px;
   border: 1px solid black;
-` padding-top: 10px;
+  border-radius: 5px;
   text-align: center;
+  background-color: black;
+  margin-left: 20px;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  display: block;
 }
 
 .helpScreen {
   width: 150px;
   height: 140px;
-  border: 1px solid black;
+  border: 1px solid white;
   float: right;
   margin-right: 20px;
   margin-top: 40px;
@@ -133,7 +169,7 @@
 .backButton {
   width: 50px;
   height: 40px;
-  border: 1px solid black;
+  border: 1px solid white;
   margin: auto;
 }
 
@@ -145,18 +181,23 @@
   display: inline-block;
   width:80px;
   height: 80px;
-  border: 1px solid black;
+  border: 2px solid rgb(22, 21, 45);
+  border-radius: 10px;
   margin-bottom: -5px;
   margin-left: -1px;
+  background-color: rgba(67, 63, 123, 0.5)
 }
 
 .timerDisplay {
-  width: 30px;
-  height: 30px;
+  width: 80px;
+  height: 40px;
   float: left;
   border: 1px solid black;
+  border-radius: 5px;
   text-align: center;
   margin-left: 20px;
-  color: red;
-  font-size: 20px;
+  color: white;
+  font-size: 30px;
+  background-color: black;
+  padding-top: 5px;
 }
