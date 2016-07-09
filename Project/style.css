@@ -17,10 +17,63 @@
   margin-left: -1px;
 }
 
-#blockRed {
+#initRed {
   background-color: red;
 }
 
-.block.selected {
+#endRed {
+  background-color: red;
+}
+
+#initBlue {
   background-color: blue;
+}
+
+#endBlue {
+  background-color: blue;
+}
+
+#initGreen {
+  background-color: green;
+}
+
+#endGreen {
+  background-color: green;
+}
+
+.block.red {
+  background-color: red;
+}
+
+.block.blue {
+  background-color: blue;
+}
+
+.block.green {
+  background-color: green;
+}
+
+.reset {
+  width: 50px;
+  height:30px;
+  border: 1px solid black;
+  margin: auto;
+  padding-top: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.help {
+  width: 50px;
+  height:30px;
+  border: 1px solid black;
+` padding-top: 10px;
+  text-align: center;
+}
+
+.helpScreen {
+  width: 100px;
+  height: 300px;
+  border: 1px solid black;
+  float:right;
 }
