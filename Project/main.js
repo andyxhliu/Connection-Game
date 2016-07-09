@@ -10,6 +10,7 @@ var timerId=setInterval(function() {
   addTimerDisplay();
   if (time===0) {
     clearInterval(timerId);
+    console.log("You Lose!");
   }
 }, 1000);
 
@@ -21,6 +22,7 @@ var blocks=document.createElement('div');
 var backButton = document.createElement('div');
 var timerDisplay = document.createElement('div');
 var blocksArray=[];
+var allColors=["red","blue","green","purple","yellow","aqua"];
 var block;
 var j;
 var color;
@@ -41,6 +43,7 @@ function addContainer() {
   addResetButton();
   addBlocksToListen();
   addHelpButton();
+  addEventListenerMouseUp();
 }
 
 function addBlocksToListen() {
@@ -92,27 +95,6 @@ function blocksStarter() {
   addEventListenerMouseDown(initAqua);
 }
 
-// function blocksStarter(positionInit, init, positionEnd, end) {
-//   this.positionInit=positionInit;
-//   this.init=init;
-//   this.positionEnd=positionEnd;
-//   this.end=end;
-// }
-
-// blocksStarter.prototype.setAttri=function() {
-//   blocksArray[positionInit].setAttribute("id", init);
-//   blocksArray[positionInit].setAttribute("class", "starter");
-//   blocksArray[positionEnd].setAttribute("id", end);
-//   blocksArray[positionEnd].setAttribute("class", "starter");
-//   addEventListenerMouseDown(initRed);
-//   addEventListenerMouseDown(initBlue);
-//   addEventListenerMouseDown(initGreen);
-// }
-
-// var red= new blocksStarter(0,"initRed",24, "endRed");
-// var blue= new blocksStarter(8,"initBlue", 15, "endBlue");
-// var green= new blocksStarter(14,"initgreen", 35, "endGreen");
-
 function addEventListenerMouseDown(init) {
   init.addEventListener("mousedown", function() {
     color = this.id.replace("init", "").toLowerCase();
@@ -160,9 +142,7 @@ function addResetButton() {
 
 function resetButtonToListen() {
   resetButton.addEventListener("click", function() {
-    blocksArray.forEach(function(block,i) {
-      block.className="block";
-    })
+    reset(allColors);
   })
 }
 
@@ -190,16 +170,59 @@ function allowBackToListen() {
   backButton.setAttribute("class", "blank");
   helpScreen.setAttribute("class", "blank");
   helpScreen.innerHTML="";
-  console.log("clear it");
   }) 
 }
 
+function addEventListenerMouseUp() {
+  blocksArray.forEach(function(block, i) {
+    block.addEventListener("mouseup", function() {
+      switch(true) {
+        case ((this.id!=="endRed")&& (blocksArray[0].className==="block red")):
+        reset(["red"]);
+        blocksArray[0].className==="starter";
+        break;
+        case ((this.id!=="endBlue")&& (blocksArray[8].className==="block blue")):
+        reset(["blue"]);
+        blocksArray[8].className==="starter";
+        break;
+        case ((this.id!=="endGreen")&&(blocksArray[14].className==="block green")):
+        reset(["green"]);
+        blocksArray[14].className==="starter";
+        break;
+        case ((this.id!=="endPurple")&&(blocksArray[30].className==="block purple")):
+        reset(["purple"]);
+        blocksArray[30].className==="starter";
+        break;
+        case ((this.id!=="endYellow")&&(blocksArray[10].className==="block yellow")):
+        reset(["yellow"]);
+        blocksArray[10].className==="starter";
+        break;
+        case ((this.id!=="endAqua")&&(blocksArray[20].className==="block aqua")):
+        reset(["aqua"]);
+        blocksArray[20].className==="starter";
+        break;
+        default:
+        blocksArray[0].className="starter";
+        blocksArray[8].className="starter";
+        blocksArray[14].className="starter";
+        blocksArray[30].className="starter";
+        blocksArray[10].className="starter";
+        blocksArray[20].className="starter";
+      }
+    });
+  });
+}
 
-
-
-
-
-
+function reset(colors) {
+  colors.forEach(function(color,i) {
+    console.log(colors);
+    blocksArray.forEach(function(block,i) {
+      if(block.className ===("block"+" "+ color)) {
+        block.className="block";
+      }
+    })
+  })
+}
 
 
 
