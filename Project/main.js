@@ -1,4 +1,3 @@
-
 document.body.onload = addContainer;
 
 var container = document.createElement('div');
@@ -24,20 +23,25 @@ function addBlocksToListen() {
 }
 
 function blocksStarter() {
-  blocksArray[7].setAttribute("id", "initRed");
-  blocksArray[35].setAttribute("id", "endRed");
-  blocksArray[22].setAttribute("id", "initBlue");
-  addEventListener();
+  blocksArray[0].setAttribute("id", "initRed");
+  blocksArray[24].setAttribute("id", "endRed");
+  blocksArray[8].setAttribute("id", "initBlue");
+  blocksArray[15].setAttribute("id", "endBlue");
+  blocksArray[14].setAttribute("id", "initGreen");
+  blocksArray[35].setAttribute("id", "endGreen");
+  addEventListener(initRed, "endRed", "red", "initBlue", "endBlue", "initGreen", "endGreen");
+  addEventListener(initBlue, "endBlue", "blue", "initRed", "initRed", "initGreen", "endGreen");
+  addEventListener(initGreen, "endGreen", "green", "initRed", "initRed", "initBlue", "endBlue");
 }
 
-function addEventListener() {
-  initRed.addEventListener("mousedown", function() {
-    this.className = "block red";
+function addEventListener(init,end, Color, OtherColorAI, OtherColorAE, OtherColorBI, OtherColorBE) {
+  init.addEventListener("mousedown", function() {
+    this.className = "block"+" "+ Color;
     blocksArray.forEach(function(block, i) {
       block.addEventListener("mouseover", function() {
-        if(event.buttons === 1 && this.id!=="initBlue" && this.className==="block" && (blocksArray[i-1].className === "block red"||blocksArray[i-6].className === "block red" ||blocksArray[i+1].className === "block red" || blocksArray[i+6].className === "block red")) {
-          this.className = "block red";
-          if (this.id==="endRed") {
+        if(event.buttons === 1 && this.id!==OtherColorAI && this.id!==OtherColorAE && this.id!==OtherColorBI && this.id!==OtherColorBE && this.className==="block" && (blocksArray[i-1].className === "block"+" "+ Color||blocksArray[i-6].className === "block"+" "+ Color ||blocksArray[i+1].className === "block"+" "+ Color || blocksArray[i+6].className === "block"+" "+ Color)) {
+          this.className = "block"+" "+ Color;
+          if (this.id===end) {
             console.log("You found it");
           }
           checkWin();
@@ -53,20 +57,13 @@ function checkWin() {
     if(blocksArray[j].className!=="block"){
       counter++;
     }
-    if (counter===(blocksArray.length-1)) {
+    if (counter===(blocksArray.length-4)) {
       console.log("You win!");
     }
   }
 }
 
-/*Above is to allow define destination and will not cross block with another colors*/
-
-
-
-
-
-
-
+/*Above is to create total six colors on the same board and solve any bugs*/
 
 
 
