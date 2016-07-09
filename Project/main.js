@@ -9,6 +9,7 @@ var backButton = document.createElement('div');
 var blocksArray=[];
 var block;
 var j;
+var color;
 
 function addContainer() {
   container.setAttribute("class", "container");
@@ -38,18 +39,31 @@ function blocksStarter() {
   blocksArray[15].setAttribute("id", "endBlue");
   blocksArray[14].setAttribute("id", "initGreen");
   blocksArray[35].setAttribute("id", "endGreen");
-  addEventListener(initRed, "endRed", "red", "initBlue", "endBlue", "initGreen", "endGreen");
-  addEventListener(initBlue, "endBlue", "blue", "initRed", "initRed", "initGreen", "endGreen");
-  addEventListener(initGreen, "endGreen", "green", "initRed", "initRed", "initBlue", "endBlue");
+  addEventListener(initRed, "endRed", "initBlue", "endBlue", "initGreen", "endGreen");
+  addEventListener(initBlue, "endBlue", "initRed", "initRed", "initGreen", "endGreen");
+  addEventListener(initGreen, "endGreen", "initRed", "initRed", "initBlue", "endBlue");
 }
 
-function addEventListener(init,end, Color, OtherColorAI, OtherColorAE, OtherColorBI, OtherColorBE) {
+function addEventListener(init, end, OtherColorAI, OtherColorAE, OtherColorBI, OtherColorBE) {
   init.addEventListener("mousedown", function() {
-    this.className = "block"+" "+ Color;
+
+    color = this.id.replace("init", "").toLowerCase();
+
+    this.className = "block"+" "+ color;
     blocksArray.forEach(function(block, i) {
       block.addEventListener("mouseover", function() {
-        if(event.buttons === 1 && this.id!==OtherColorAI && this.id!==OtherColorAE && this.id!==OtherColorBI && this.id!==OtherColorBE && this.className==="block" && (blocksArray[i-1].className === "block"+" "+ Color||blocksArray[i-6].className === "block"+" "+ Color ||blocksArray[i+1].className === "block"+" "+ Color || blocksArray[i+6].className === "block"+" "+ Color)) {
-          this.className = "block"+" "+ Color;
+        if(event.buttons === 1 &&
+          this.id!==OtherColorAI &&
+          this.id!==OtherColorAE &&
+          this.id!==OtherColorBI &&
+          this.id!==OtherColorBE &&
+          this.className==="block" &&
+          (blocksArray[i-1] && blocksArray[i-1].className === "block"+" "+ color ||
+            blocksArray[i-6] && blocksArray[i-6].className === "block"+" "+ color ||
+            blocksArray[i+1].className === "block"+" "+ color ||
+            blocksArray[i+6].className === "block"+" "+ color)
+          ) {
+          this.className = "block"+" "+ color;
           if (this.id===end) {
             console.log("You found it");
             /*How to disable the event listener? So user won't go pass it?*/
@@ -122,7 +136,6 @@ function allowBackToListen() {
   }) 
 }
 
-/*Try to add the help button and pop up screen*/
 
 
 
