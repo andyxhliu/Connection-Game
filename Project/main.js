@@ -94,10 +94,27 @@ function reset() {
   })
 }
 
-/*Above is to add the reset button*/
 
+function addHelpButton() {
+  helpButton.setAttribute("class", "help");
+  helpButton.innerHTML="Help";
+  document.body.appendChild(helpButton);
+  helpButtonToListen();
+}
 
+function helpButtonToListen() {
+  helpButton.addEventListener("click", function() {
+    help();
+  })
+}
 
+function help() {
+  helpScreen.setAttribute("class", "helpScreen");
+  helpScreen.setAttribute("h1", "Help");
+  helpScreen.innerHTML("Let me teach you how to play");
+}
+
+/*Try to add the help button and pop up screen*/
 
 
 
