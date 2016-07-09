@@ -4,6 +4,7 @@ var container = document.createElement('div');
 var resetButton = document.createElement('div');
 var helpButton = document.createElement('div');
 var helpScreen = document.createElement('div');
+var blocks=document.createElement('div');
 var blocksArray=[];
 var block;
 var j;
@@ -11,6 +12,8 @@ var j;
 function addContainer() {
   container.setAttribute("class", "container");
   document.body.appendChild(container);
+  blocks.setAttribute("class", "blocks");
+  document.getElementsByClassName("container")[0].appendChild(blocks);
   addResetButton();
   addBlocksToListen();
   addHelpButton();
@@ -21,7 +24,7 @@ function addBlocksToListen() {
   for (var i=0; i<36; i++) {
     block = document.createElement('div');
     block.setAttribute("class", "block");
-    container.appendChild(block);
+    document.getElementsByClassName("blocks")[0].appendChild(block);
     blocksArray.push(block);
   }
   blocksStarter();
@@ -84,25 +87,16 @@ function addResetButton() {
 
 function resetButtonToListen() {
   resetButton.addEventListener("click", function() {
-    reset();
+    blocksArray.forEach(function(block,i) {
+      block.className="block";
+    })
   })
 }
-
-function reset() {
-  blocksArray.forEach(function(block,i) {
-    block.className="block";
-  })
-}
-
 
 function addHelpButton() {
   helpButton.setAttribute("class", "help");
   helpButton.innerHTML="Help";
   document.body.appendChild(helpButton);
-  helpButtonToListen();
-}
-
-function helpButtonToListen() {
   helpButton.addEventListener("click", function() {
     help();
   })
@@ -110,8 +104,8 @@ function helpButtonToListen() {
 
 function help() {
   helpScreen.setAttribute("class", "helpScreen");
-  helpScreen.setAttribute("h1", "Help");
-  helpScreen.innerHTML("Let me teach you how to play");
+  document.getElementsByClassName("container")[0].appendChild(helpScreen);
+  helpScreen.innerHTML="Connect the blocks with the same color, without interfer with other colors and fill all the blocks!";
 }
 
 /*Try to add the help button and pop up screen*/
