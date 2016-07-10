@@ -4,13 +4,16 @@ setTimeout(function() {
   console.log("Timeout function called");
 }, 2000);
 
-var time=15;
+var time=20;
 var timerId=setInterval(function() {
   time--;
   addTimerDisplay();
-  if (time===0) {
+  if (time===0 || result==="win") {
     clearInterval(timerId);
-    console.log("You Lose!");
+    if (time===0) {
+      // playAgain();
+      console.log("you lose");
+    }
   }
 }, 1000);
 
@@ -21,11 +24,15 @@ var helpScreen = document.createElement('div');
 var blocks=document.createElement('div');
 var backButton = document.createElement('div');
 var timerDisplay = document.createElement('div');
+var display = document.createElement('div');
+var buttonNext = document.createElement('div');
+var buttonReplay = document.createElement('div');
 var blocksArray=[];
 var allColors=["red","blue","green","purple","yellow","aqua"];
 var block;
 var j;
 var color;
+var result=null;
 
 
 function addTimerDisplay() {
@@ -44,6 +51,24 @@ function addContainer() {
   addBlocksToListen();
   addHelpButton();
   addEventListenerMouseUp();
+  addDisplay();
+  addButtonNext();
+  addButtonReplay();
+}
+
+function addButtonReplay() {
+  buttonReplay.setAttribute("class", "buttonReplay");
+  document.getElementsByClassName("container")[0].appendChild(buttonReplay);
+}
+
+function addButtonNext() {
+  buttonNext.setAttribute("class", "buttonNext");
+  document.getElementsByClassName("container")[0].appendChild(buttonNext);
+}
+
+function addDisplay() {
+  display.setAttribute("class", "display");
+  document.getElementsByClassName("container")[0].appendChild(display);
 }
 
 function addBlocksToListen() {
@@ -128,7 +153,11 @@ function checkWin() {
       counter++;
     }
     if (counter===(blocksArray.length)) {
-      console.log("You win!");
+      result="win";
+      display.setAttribute("class","display"+" win");
+      buttonNext.setAttribute("class", "buttonNext"+" win");
+      buttonReplay.setAttribute("class", "buttonReplay"+" win");
+      // resetInitalPosition();
     }
   }
 }
@@ -222,6 +251,10 @@ function reset(colors) {
     })
   })
 }
+
+// function resetInitialPosition() {
+
+// }
 
 // $(function() {
 //   console.log("jQuery Loaded");

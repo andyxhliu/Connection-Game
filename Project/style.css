@@ -7,20 +7,16 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   color: white;
+  padding:0;
 }
 
-
 .container {
-  width: 700px;
+  width: 800px;
   height: 530px;
-/*  border: 1px solid white;*/
   margin: auto;
   padding-left: 15px;
   padding-top: 10px;
   margin-top: 40px;
-
-/*  display: inline-block;*/
-/*  float: left;*/
 }
 
 .blocks {
@@ -40,7 +36,20 @@ html {
   border-radius: 10px;
   margin-bottom: -5px;
   margin-left: -1px;
-  background-color: rgba(67, 63, 123, 0.5)
+  background-color: rgba(67, 63, 123, 0.5);
+}
+
+
+.blockWinScreen {
+  width: 500px;
+  height: 500px;
+  border: none;
+  padding-left: 15px;
+  padding-top: 10px;
+  float: left;
+  background-image: url("images/Win.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 #initRed {
@@ -185,8 +194,9 @@ html {
   border-radius: 10px;
   margin-bottom: -5px;
   margin-left: -1px;
-  background-color: rgba(67, 63, 123, 0.5)
+  background-color: rgba(67, 63, 123, 0.5);
 }
+
 
 .timerDisplay {
   width: 80px;
@@ -200,4 +210,49 @@ html {
   font-size: 30px;
   background-color: black;
   padding-top: 5px;
+}
+
+.display {
+  width: 250px;
+  height: 150px;
+  float: right;
+  margin-top: 20px;
+  background-image: url("images/unlock.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.display.win {
+  background-image: url("images/win.png");
+}
+
+.buttonNext {
+  width: 50px;
+  height: 50px;
+  float: right;
+  border: none;
+  margin-top: 25px;
+}
+
+.buttonNext.win {
+  background: url("images/next.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.buttonReplay {
+  width: 55px;
+  height: 60px;
+  float: right;
+  border: none;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+.buttonReplay.win {
+  background: url("images/replay.png");
+  background-size: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
