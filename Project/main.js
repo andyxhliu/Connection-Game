@@ -10,26 +10,22 @@ setTimeout(function() {
 
 var time=20;
 
-// function startTiming() {
-//   var timerId=setInterval(function() {
-//     time--;
-//     console.log(time);
-//     addTimerDisplay();
-//     if (time===0 || result==="win") {
-//       result=null;
-//       clearInterval(timerId);
-//       if (time===0) {
-//         // clearInterval(timerId);
-//         // result=null;
-//         display.setAttribute("class","display"+" lose");
-//         buttonNext.setAttribute("class", "buttonNext");
-//         buttonReplay.setAttribute("class", "buttonReplay"+" win");
-//         addButtonReplayToListen();
-//         reset(allColors);
-//       }
-//     }
-//   }, 1000);
-// }
+function startTiming() {
+  var timerId=setInterval(function() {
+    time--;
+    addTimerDisplay();
+    if (time===0 || result==="win") {
+      result=null;
+      clearInterval(timerId);
+      if (time===0) {
+        display.setAttribute("class","display"+" lose");
+        buttonNext.setAttribute("class", "buttonNext");
+        buttonReplay.setAttribute("class", "buttonReplay"+" win");
+        reset(allColors);
+      }
+    }
+  }, 1000);
+}
 
 var container = document.createElement('div');
 var resetButton = document.createElement('div');
@@ -338,9 +334,7 @@ function checkWin() {
 }
 
 function addButtonNextToListen() {
-  console.log("added button");
   buttonNext.addEventListener("click", function() {
-    console.log("change to second array");
     replay();
     for (var i=0; i<36; i++) {
       blocksArray[i].setAttribute("class","block");
@@ -358,7 +352,6 @@ function addButtonNextToListen() {
     blocksArray[initialPositions[level].initAqua].removeAttribute("id","initAqua");
     blocksArray[initialPositions[level].endAqua].removeAttribute("id","endAqua");
     level++;
-    console.log(level);
     blocksStarter();
   })
 }
@@ -374,9 +367,8 @@ function replay() {
   display.setAttribute("class","display");
   buttonNext.setAttribute("class", "buttonNext");
   buttonReplay.setAttribute("class", "buttonReplay");
-  // time=20;
-  // startTiming();
-  /*HOW to reset the timing???????????????????????????????????????????????????*/
+  time=20;
+  startTiming();
 }
 
 function addResetButton() {
@@ -459,7 +451,6 @@ function addEventListenerMouseUp() {
 }
 
 function reset(colors) {
-  console.log("i am in resetting colors");
   colors.forEach(function(color,i) {
     blocksArray.forEach(function(block,i) {
       if(block.className ===("block"+" "+ color)) {
