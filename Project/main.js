@@ -12,10 +12,16 @@ function startTiming() {
     console.log(time);
     addTimerDisplay();
     if (time===0 || result==="win") {
+      result=null;
       clearInterval(timerId);
       if (time===0) {
-        console.log("you lose");
-        
+        // clearInterval(timerId);
+        // result=null;
+        display.setAttribute("class","display"+" lose");
+        buttonNext.setAttribute("class", "buttonNext");
+        buttonReplay.setAttribute("class", "buttonReplay"+" win");
+        addButtonReplayToListen();
+        reset(allColors);
       }
     }
   }, 1000);
@@ -37,7 +43,18 @@ var block;
 var j;
 var color;
 var result=null;
+var level=0;
+var initialPositions=[[0,24,8,15,14,35,30,28,10,26,20,25],
+                      [0,19,5,9,4,29,27,35,6,33,25,22],
+                      [0,28,10,14,1,17,31,26,30,12,32,15],
+                      [1,6,12,7,2,31,25,35,10,14,15,22]];
+var initialPlace=[];
 
+function chooseInitialPosition(level) {
+  for (var i=0; i<initialPositions[level].length; i++) {
+    initialPlace.push(initialPositions[level][i]);
+  }
+}
 
 function addTimerDisplay() {
   timerDisplay.setAttribute("class", "timerDisplay");
@@ -51,6 +68,7 @@ function addContainer() {
   document.body.appendChild(container);
   blocks.setAttribute("class", "blocks");
   document.getElementsByClassName("container")[0].appendChild(blocks);
+  chooseInitialPosition(level);
   addResetButton();
   addBlocksToListen();
   addHelpButton();
@@ -171,6 +189,7 @@ function checkWin() {
 function addButtonNextToListen() {
   buttonNext.addEventListener("click", function() {
     console.log("change to second array");
+    level++;
   })
 }
 
@@ -180,6 +199,15 @@ function addButtonReplayToListen() {
     display.setAttribute("class","display");
     buttonNext.setAttribute("class", "buttonNext");
     buttonReplay.setAttribute("class", "buttonReplay");
+    console.log("pass reset colors");
+    // setTimeout();
+    console.log("pass setTimeOut");
+    time=20;
+    startTiming();
+    console.log("pass startTiming");
+    // addTimerDisplay();
+    // console.log("pass addTimerDispaly");
+    /*HOW to reset the timing???????????????????????????????????????????????????*/
   })
 }
 
@@ -193,11 +221,6 @@ function addResetButton() {
 function resetButtonToListen() {
   resetButton.addEventListener("click", function() {
     reset(allColors);
-    setTimeout();
-    time=20;
-    startTiming();
-    addTimerDisplay();
-    /*HOW to reset the timing???????????????????????????????????????????????????*/
   })
 }
 
@@ -214,9 +237,8 @@ function help() {
   backButton.setAttribute("class", "backButton");
   helpScreen.setAttribute("class", "helpScreen");
   document.getElementsByClassName("container")[0].appendChild(helpScreen);
-  helpScreen.innerHTML="Connect the blocks with the same color, without interfer with other colors and fill all the blocks!";
+  helpScreen.innerHTML="Connect the blocks with the same color, without interfer with other colors and fill in all the blocks!<br> <br> Tip: You can undo a move by clicking the keys";
   document.getElementsByClassName("helpScreen")[0].appendChild(backButton);
-  backButton.innerHTML="Go back";
   allowBackToListen();
 }
 
@@ -269,6 +291,7 @@ function addEventListenerMouseUp() {
 }
 
 function reset(colors) {
+  console.log("i am in resetting colors");
   colors.forEach(function(color,i) {
     blocksArray.forEach(function(block,i) {
       if(block.className ===("block"+" "+ color)) {
@@ -276,6 +299,7 @@ function reset(colors) {
       }
     })
   })
+  console.log("i finished reset color");
 }
 
 // function resetInitialPosition() {
