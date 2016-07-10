@@ -5,17 +5,21 @@ setTimeout(function() {
 }, 2000);
 
 var time=20;
-var timerId=setInterval(function() {
-  time--;
-  addTimerDisplay();
-  if (time===0 || result==="win") {
-    clearInterval(timerId);
-    if (time===0) {
-      // playAgain();
-      console.log("you lose");
+
+function startTiming() {
+  var timerId=setInterval(function() {
+    time--;
+    console.log(time);
+    addTimerDisplay();
+    if (time===0 || result==="win") {
+      clearInterval(timerId);
+      if (time===0) {
+        console.log("you lose");
+        
+      }
     }
-  }
-}, 1000);
+  }, 1000);
+}
 
 var container = document.createElement('div');
 var resetButton = document.createElement('div');
@@ -54,6 +58,7 @@ function addContainer() {
   addDisplay();
   addButtonNext();
   addButtonReplay();
+  startTiming();
 }
 
 function addButtonReplay() {
@@ -157,9 +162,25 @@ function checkWin() {
       display.setAttribute("class","display"+" win");
       buttonNext.setAttribute("class", "buttonNext"+" win");
       buttonReplay.setAttribute("class", "buttonReplay"+" win");
-      // resetInitalPosition();
+      addButtonNextToListen();
+      addButtonReplayToListen();
     }
   }
+}
+
+function addButtonNextToListen() {
+  buttonNext.addEventListener("click", function() {
+    console.log("change to second array");
+  })
+}
+
+function addButtonReplayToListen() {
+  buttonReplay.addEventListener("click", function() {
+    reset(allColors);
+    display.setAttribute("class","display");
+    buttonNext.setAttribute("class", "buttonNext");
+    buttonReplay.setAttribute("class", "buttonReplay");
+  })
 }
 
 function addResetButton() {
@@ -172,6 +193,11 @@ function addResetButton() {
 function resetButtonToListen() {
   resetButton.addEventListener("click", function() {
     reset(allColors);
+    setTimeout();
+    time=20;
+    startTiming();
+    addTimerDisplay();
+    /*HOW to reset the timing???????????????????????????????????????????????????*/
   })
 }
 
