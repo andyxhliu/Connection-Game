@@ -1,4 +1,4 @@
-html {
+body {
   background: url("images/backGround.png");
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -8,6 +8,184 @@ html {
   background-position: center;
   color: white;
   padding:0;
+}
+
+h1 {
+  color:rgb(91, 0, 0);
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.banner {
+  margin-top: 100px;
+  background: rgba(67, 63, 123, 0.8);
+}
+
+.start {
+  height: 200px;
+  width: 200px;
+  margin-top: 100px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+#start {
+  height: 200px;
+  width: 200px;
+  margin-top: -40px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+
+.start:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+#start:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+#splashscreen {
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  width:100%;
+  height: 115%;
+  background: url("images/dungeon.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 999;
+  text-align: center;
+}
+
+#secondSplashScreen {
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  width:100%;
+  height: 115%;
+  background: url("images/prison.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 5;
+  text-align: center;
+}
+
+.rule {
+  width: 950px;
+  height: 400px;
+  margin: auto;
+}
+
+.ruleOne {
+  height: 340px;
+  width:310px;
+  background-color:rgba(67, 63, 123, 0.8);
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.ruleOne:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.ruleTwo {
+  height: 320px;
+  width:310px;
+  background-color:rgba(67, 63, 123, 0.8);
+  display: inline-block;
+  padding-top: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.ruleTwo:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.ruleThree {
+  height: 320px;
+  width:310px;
+  background-color:rgba(67, 63, 123, 0.8);
+  float:right;
+  display: inline-block;
+  padding-top: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.ruleThree:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.ruleImage {
+  width: 200px;
+  height: 200px;
+}
+
+p {
+  color:rgb(91, 0, 0);
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .container {
@@ -265,4 +443,17 @@ html {
   background-size: 90%;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.welcomeScreen {
+  width: 800px;
+  height: 1000px;
+  background-color: black;
+  z-index: 9999;
+  position: absolute;
+}
+
+.welcomeScreen.disappear {
+  opacity: 0;
+  z-index:-9999;
 }

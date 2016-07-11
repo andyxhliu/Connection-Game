@@ -1,8 +1,19 @@
-document.body.onload = welcomeScreen;
+// document.body.onload = welcomeScreen;
+// document.body.onload = addContainer;
 
-function welcomeScreen() {
-  addContainer();
-}
+// function welcomeScreen() {
+//   welcomeScreen.setAttribute("class","welcomeScreen");
+//   document.body.appendChild(welcomeScreen);
+//   addWelcomeScreenToListen();
+//   // addContainer();
+// }
+
+// function addWelcomeScreenToListen() {
+//   welcomeScreen.addEventListener("click", function() {
+//     welcomeScreen.setAttribute("class","welcomeScreen"+" disappear");
+//     addContainer();
+//   })
+// }
 
 setTimeout(function() {
   console.log("Timeout function called");
@@ -37,6 +48,7 @@ var timerDisplay = document.createElement('div');
 var display = document.createElement('div');
 var buttonNext = document.createElement('div');
 var buttonReplay = document.createElement('div');
+var welcomeScreen = document.createElement('div');
 var blocksArray=[];
 var allColors=["red","blue","green","purple","yellow","aqua"];
 var block;
@@ -461,11 +473,16 @@ function reset(colors) {
   console.log("i finished reset color");
 }
 
-// function resetInitialPosition() {
 
-// }
+$(function() {
+  $('.start').click(function () {
+      $(this).parent('#splashscreen').fadeOut(500);
+  });
 
-
+  $('#secondSplashScreen').click(function () {
+      $(this).fadeOut(500);
+  });
+});
 
 
 
