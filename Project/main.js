@@ -1,5 +1,3 @@
-// document.body.onload = welcomeScreen;
-// document.body.onload = addContainer;
 
 setTimeout(function() {
   console.log("Timeout function called");
@@ -23,7 +21,8 @@ function startTiming() {
     }
   }, 1000);
 }
-
+var endScreen = document.createElement('div');
+var levelId = document.createElement('div'); /**/
 var container = document.createElement('div');
 var resetButton = document.createElement('div');
 var helpButton = document.createElement('div');
@@ -41,6 +40,7 @@ var block;
 var j;
 var color;
 var result=null;
+var levelOnShowing=1;
 var level=0;
 var initialPositions=[
   {
@@ -57,20 +57,20 @@ var initialPositions=[
     initAqua:20,
     endAqua:25
   },
-  { 
-    initRed: 0,
-    endRed: 19,
-    initBlue:5,
-    endBlue:9,
-    initGreen:4,
-    endGreen:29,
-    initPurple:27,
-    endPurple:35,
-    initYellow:6,
-    endYellow:33,
-    initAqua:25,
-    endAqua:22
-  },
+  // { 
+  //   initRed: 0,
+  //   endRed: 19,
+  //   initBlue:5,
+  //   endBlue:9,
+  //   initGreen:4,
+  //   endGreen:29,
+  //   initPurple:27,
+  //   endPurple:35,
+  //   initYellow:6,
+  //   endYellow:33,
+  //   initAqua:25,
+  //   endAqua:22
+  // },
   {
     initRed: 0,
     endRed: 19,
@@ -202,7 +202,7 @@ var initialPositions=[
 function addTimerDisplay() {
   timerDisplay.setAttribute("class", "timerDisplay");
   document.body.insertBefore(timerDisplay,container);
-  timerDisplay.innerHTML="SECONDS REMAINING"+"<br>"+time;
+  timerDisplay.innerHTML="SECONDS REMAINING"+"<br>"+"<span>"+time+"</span>";
 }
 
 
@@ -219,10 +219,17 @@ function addContainer() {
   addEventListenerMouseUp();
   addHelpButton();
   blocksStarter();
+  addlevelId();
   addDisplay();
   addButtonNext();
   addButtonReplay();
   startTiming();
+}
+
+function addlevelId() {
+  levelId.setAttribute("class", "levelId");
+  document.body.insertBefore(levelId, container);
+  levelId.innerHTML="LEVEL "+levelOnShowing;
 }
 
 function addButtonReplay() {
@@ -350,9 +357,24 @@ function addButtonNextToListen() {
     blocksArray[initialPositions[level].initAqua].removeAttribute("id","initAqua");
     blocksArray[initialPositions[level].endAqua].removeAttribute("id","endAqua");
     level++;
-    blocksStarter();
+    levelOnShowing++;
+    levelId.innerHTML="LEVEL "+levelOnShowing;
+    if (level < 10) {
+      blocksStarter();
+    } else {
+      result="win";
+      showEndScreen();
+    }
   })
 }
+
+
+function showEndScreen(){
+  endScreen.setAttribute("class","endScreen");
+  endScreen.innerHTML="YOU SURVIVED ..."
+  document.body.appendChild(endScreen);
+}
+
 
 function addButtonReplayToListen() {
   buttonReplay.addEventListener("click", function() {
@@ -462,12 +484,12 @@ function reset(colors) {
 
 $(function() {
   $('.start').click(function () {
-      $(this).parent('#splashscreen').fadeOut(500);
+    $(this).parent('#splashscreen').fadeOut(500);
   });
 
   $('#secondSplashScreen').click(function () {
-      $(this).fadeOut(500);
-      addContainer();
+    $(this).fadeOut(500);
+    addContainer();
   });
 });
 
