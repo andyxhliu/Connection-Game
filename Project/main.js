@@ -1,20 +1,6 @@
 // document.body.onload = welcomeScreen;
 // document.body.onload = addContainer;
 
-// function welcomeScreen() {
-//   welcomeScreen.setAttribute("class","welcomeScreen");
-//   document.body.appendChild(welcomeScreen);
-//   addWelcomeScreenToListen();
-//   // addContainer();
-// }
-
-// function addWelcomeScreenToListen() {
-//   welcomeScreen.addEventListener("click", function() {
-//     welcomeScreen.setAttribute("class","welcomeScreen"+" disappear");
-//     addContainer();
-//   })
-// }
-
 setTimeout(function() {
   console.log("Timeout function called");
 }, 2000);
@@ -216,7 +202,7 @@ var initialPositions=[
 function addTimerDisplay() {
   timerDisplay.setAttribute("class", "timerDisplay");
   document.body.insertBefore(timerDisplay,container);
-  timerDisplay.innerHTML=time;
+  timerDisplay.innerHTML="SECONDS REMAINING"+"<br>"+time;
 }
 
 
@@ -481,6 +467,7 @@ $(function() {
 
   $('#secondSplashScreen').click(function () {
       $(this).fadeOut(500);
+      addContainer();
   });
 });
 
