@@ -329,6 +329,7 @@ function checkWin() {
       display.setAttribute("class","display"+" win");
       buttonNext.setAttribute("class", "buttonNext"+" win");
       buttonReplay.setAttribute("class", "buttonReplay"+" win");
+      popUpScreen.setAttribute("class", "popUpScreenWin");
     }
   }
 }
@@ -354,6 +355,7 @@ function addButtonNextToListen() {
     level++;
     levelOnShowing++;
     levelId.innerHTML="LEVEL "+levelOnShowing;
+    popUpScreen.setAttribute("class","popUpScreen");
     if (level < 10) {
       blocksStarter();
     } else {
@@ -374,6 +376,7 @@ function showEndScreen(){
 function addButtonReplayToListen() {
   buttonReplay.addEventListener("click", function() {
     replay();
+    popUpScreen.setAttribute("class","popUpScreen");
   })
 }
 
@@ -396,6 +399,7 @@ function addResetButton() {
 function resetButtonToListen() {
   resetButton.addEventListener("click", function() {
     reset(allColors);
+    popUpScreen.setAttribute("class","popUpScreen");
   })
 }
 
