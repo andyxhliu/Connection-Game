@@ -32,6 +32,7 @@ var helpButton = document.createElement('div');
 var helpScreen = document.createElement('div');
 var blocks=document.createElement('div');
 var backButton = document.createElement('div');
+var homeButton = document.createElement('div');
 var timerDisplay = document.createElement('div');
 var display = document.createElement('div');
 var buttonNext = document.createElement('div');
@@ -43,8 +44,8 @@ var block;
 var j;
 var color;
 var result=null;
-var levelOnShowing=1;
 var level=0;
+var blocksAdded=0;
 var initialPositions=[
   {
     initRed: 0,
@@ -207,24 +208,27 @@ function addContainer() {
   document.getElementsByClassName("container")[0].appendChild(blocks);
   addResetButton();
   addBlocksToListen();
-  addButtonNextToListen();
+  // addButtonNextToListen();
   addButtonReplayToListen();
   addResetButton();
   addEventListenerMouseUp();
   addHelpButton();
   blocksStarter();
-  addlevelId();
   addDisplay();
   addButtonNext();
   addButtonReplay();
   addPopUpScreen();
+  addHomeButtonToListen();
+  addButtonNextToListen();
+  addlevelId();
   startTiming();
 }
+
 
 function addlevelId() {
   levelId.setAttribute("class", "levelId");
   document.body.insertBefore(levelId, container);
-  levelId.innerHTML="LEVEL "+levelOnShowing;
+  levelId.innerHTML="LEVEL "+(level+1);
 }
 
 function addButtonReplay() {
@@ -243,12 +247,14 @@ function addDisplay() {
 }
 
 function addBlocksToListen() {
-  var blockNumber = 36;
-  for (var i=0; i<36; i++) {
-    block = document.createElement('div');
-    block.setAttribute("class", "block");
-    document.getElementsByClassName("blocks")[0].appendChild(block);
-    blocksArray.push(block);
+  if (blocksAdded===0) {
+    var blockNumber = 36;
+    for (var i=0; i<36; i++) {
+      block = document.createElement('div');
+      block.setAttribute("class", "block");
+      document.getElementsByClassName("blocks")[0].appendChild(block);
+      blocksArray.push(block);
+    }
   }
 }
 
@@ -353,8 +359,7 @@ function addButtonNextToListen() {
     blocksArray[initialPositions[level].initAqua].removeAttribute("id","initAqua");
     blocksArray[initialPositions[level].endAqua].removeAttribute("id","endAqua");
     level++;
-    levelOnShowing++;
-    levelId.innerHTML="LEVEL "+levelOnShowing;
+    levelId.innerHTML="LEVEL "+(level+1);
     popUpScreen.setAttribute("class","popUpScreen");
     if (level < 10) {
       blocksStarter();
@@ -367,9 +372,21 @@ function addButtonNextToListen() {
 
 
 function showEndScreen(){
-  endScreen.setAttribute("class","endScreen");
-  endScreen.innerHTML="YOU SURVIVED ..."
+  endScreen.setAttribute("id","endScreen");
+  endScreen.innerHTML="YOU SURVIVED ...";
+  // document.getElementById("endScreen").style.display="unset";
+  homeButton.setAttribute("class","homeButton");
+  endScreen.appendChild(homeButton);
   document.body.appendChild(endScreen);
+}
+
+function addHomeButtonToListen() {
+  blocksAdded=1;
+  homeButton.addEventListener("click", function() {
+  document.getElementById("secondSplashScreen").style.display="unset";
+  document.getElementById("splashscreen").style.display="unset";
+  document.getElementById("endScreen").style.display="none";
+  })
 }
 
 
@@ -484,18 +501,16 @@ function reset(colors) {
 $(function() {
   $('.start').click(function () {
     $(this).parent('#splashscreen').fadeOut(500);
+    console.log("clicked");
   });
 
   $('#secondSplashScreen').click(function () {
     $(this).fadeOut(500);
+    level=0;/**//**//**//**/
     addContainer();
   });
+  // $('homeButton').click(function () {
+  //   console.log("clicked");
+  //   $('#splashscreen').show();
+  // });
 });
-
-
-
-
-
-
-
-
