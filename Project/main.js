@@ -14,6 +14,7 @@ function startTiming() {
       clearInterval(timerId);
       if (time===0) {
         display.setAttribute("class","display"+" lose");
+        popUpScreen.setAttribute("class","popUpScreenLose");
         buttonNext.setAttribute("class", "buttonNext");
         buttonReplay.setAttribute("class", "buttonReplay"+" win");
         reset(allColors);
@@ -21,8 +22,10 @@ function startTiming() {
     }
   }, 1000);
 }
+
+var popUpScreen = document.createElement('div');
 var endScreen = document.createElement('div');
-var levelId = document.createElement('div'); /**/
+var levelId = document.createElement('div'); 
 var container = document.createElement('div');
 var resetButton = document.createElement('div');
 var helpButton = document.createElement('div');
@@ -57,20 +60,6 @@ var initialPositions=[
     initAqua:20,
     endAqua:25
   },
-  // { 
-  //   initRed: 0,
-  //   endRed: 19,
-  //   initBlue:5,
-  //   endBlue:9,
-  //   initGreen:4,
-  //   endGreen:29,
-  //   initPurple:27,
-  //   endPurple:35,
-  //   initYellow:6,
-  //   endYellow:33,
-  //   initAqua:25,
-  //   endAqua:22
-  // },
   {
     initRed: 0,
     endRed: 19,
@@ -199,6 +188,11 @@ var initialPositions=[
   }
 ];
 
+function addPopUpScreen() {
+  popUpScreen.setAttribute("class","popUpScreen");
+  document.body.appendChild(popUpScreen);
+}
+
 function addTimerDisplay() {
   timerDisplay.setAttribute("class", "timerDisplay");
   document.body.insertBefore(timerDisplay,container);
@@ -223,6 +217,7 @@ function addContainer() {
   addDisplay();
   addButtonNext();
   addButtonReplay();
+  addPopUpScreen();
   startTiming();
 }
 

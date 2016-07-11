@@ -25,6 +25,42 @@ body {
   text-align: center;
 }
 
+.popUpScreen {
+  width: 500px;
+  height: 400px;
+  position: absolute;
+  float: left;
+  z-index: 999;
+  margin-top: -700px;
+  margin-left: 196px;
+  color: rgb(91, 0, 0);
+  padding-top: 90px;
+  text-align: center;
+  display: none;
+}
+
+.popUpScreenLose {
+  width: 500px;
+  height: 405px;
+  position: absolute;
+  float: left;
+  z-index: 999;
+  margin-top: -700px;
+  margin-left: 196px;
+  color: rgb(91, 0, 0);
+  padding-top: 90px;
+  text-align: center;
+  background-image: url("images/loseBackGround.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: none;
+  opacity: 0.5;
+}
+
+/*.popUpScreen.win {
+
+}
+*/
 h1 {
   color:rgb(91, 0, 0);
   font-size: 50px;
