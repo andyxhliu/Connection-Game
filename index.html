@@ -1,9 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Project 1</title>
+  <title>Can you escape this?</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
+  <div id="splashscreen">
+    <div class="banner">
+      <h1>READY FOR THE CHALLENGE?</h1>
+    </div>
+    <img src="images/play.png" class="start"/>
+  </div>
 
+  <div id="secondSplashScreen">
+
+    <div class="banner">
+      <h1>TO ESCAPE THE DUNGEON</h1>
+    </div>
+
+    <div class="rule">
+      <div class="ruleOne" class="sweepToRight">
+        <p>DRAW PATHS BETWEEN PAIRS OF COLORS ADN FROM KEY TO KEY HOLE.</p>
+        <img src="images/ruleOne.png" class="ruleImage"/>
+      </div>
+      <div class="ruleTwo" class="sweepToRight">
+        <p>TAP ON KEY TO DELETE THE PATH OF THIS COLOR.</p>
+        <img src="images/ruleTwo.png" class="ruleImage"/>
+      </div>
+      <div class="ruleThree" class="sweepToRight">
+        <p>YOU MUST FILL THE WHOLE BOARD.</p>
+        <img src="images/ruleThree.png" class="ruleImage"/>
+      </div>
+    </div>
+    <img src="images/play.png" id="start"/>
+  </div>
+  <audio id="backgroundAudio" autoplay="autoplay" controls loop>
+       <source src="sounds/nervousBeat.wav" />
+  </audio>
+  <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
