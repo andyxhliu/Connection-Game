@@ -1,28 +1,8 @@
-
 setTimeout(function() {
   console.log("Timeout function called");
 }, 2000);
 
 var time=20;
-
-function startTiming() {
-  var timerId=setInterval(function() {
-    time--;
-    addTimerDisplay();
-    if (time===0 || result==="win") {
-      result=null;
-      clearInterval(timerId);
-      if (time===0) {
-        display.setAttribute("class","display"+" lose");
-        popUpScreen.setAttribute("class","popUpScreenLose");
-        buttonNext.setAttribute("class", "buttonNext");
-        buttonReplay.setAttribute("class", "buttonReplay"+" win");
-        reset(allColors);
-      }
-    }
-  }, 1000);
-}
-
 var popUpScreen = document.createElement('div');
 var endScreen = document.createElement('div');
 var levelId = document.createElement('div'); 
@@ -37,6 +17,7 @@ var timerDisplay = document.createElement('div');
 var display = document.createElement('div');
 var buttonNext = document.createElement('div');
 var buttonReplay = document.createElement('div');
+var buttonHome = document.createElement('div');
 var welcomeScreen = document.createElement('div');
 var blocksArray=[];
 var allColors=["red","blue","green","purple","yellow","aqua"];
@@ -46,6 +27,7 @@ var color;
 var result=null;
 var level=0;
 var blocksAdded=0;
+
 var initialPositions=[
   {
     initRed: 0,
@@ -189,6 +171,52 @@ var initialPositions=[
   }
 ];
 
+function addContainer() {
+  container.setAttribute("class", "container");
+  document.body.appendChild(container);
+  blocks.setAttribute("class", "blocks");
+  document.getElementsByClassName("container")[0].appendChild(blocks);
+  addResetButton();
+  addBlocks();
+  addHelpButton();
+  blocksStarter();
+  addDisplay();
+  addButtonNext();
+  addButtonReplay();
+  addButtonHome();
+  addPopUpScreen();
+  addlevelId();
+  startTiming();
+}
+
+function addAllEventListener() {
+  addButtonReplayToListen();
+  addEventListenerMouseUp();
+  addHomeButtonToListen();
+  addButtonHomeToListen()
+  addButtonNextToListen();
+}
+
+function startTiming() {
+  time=20;
+  var timerId=setInterval(function() {
+    time--;
+    addTimerDisplay();
+    if (time===0 || result==="win") {
+      result=null;
+      clearInterval(timerId);
+      if (time===0) {
+        display.setAttribute("class","display"+" lose");
+        popUpScreen.setAttribute("class","popUpScreenLose");
+        buttonNext.setAttribute("class", "buttonNext");
+        buttonReplay.setAttribute("class", "buttonReplay"+" win");
+        buttonHome.setAttribute("id", "buttonHomeWin");
+        reset(allColors);
+      }
+    }
+  }, 1000);
+}
+
 function addPopUpScreen() {
   popUpScreen.setAttribute("class","popUpScreen");
   document.body.appendChild(popUpScreen);
@@ -200,35 +228,16 @@ function addTimerDisplay() {
   timerDisplay.innerHTML="SECONDS REMAINING"+"<br>"+"<span>"+time+"</span>";
 }
 
-
-function addContainer() {
-  container.setAttribute("class", "container");
-  document.body.appendChild(container);
-  blocks.setAttribute("class", "blocks");
-  document.getElementsByClassName("container")[0].appendChild(blocks);
-  addResetButton();
-  addBlocksToListen();
-  // addButtonNextToListen();
-  addButtonReplayToListen();
-  addResetButton();
-  addEventListenerMouseUp();
-  addHelpButton();
-  blocksStarter();
-  addDisplay();
-  addButtonNext();
-  addButtonReplay();
-  addPopUpScreen();
-  addHomeButtonToListen();
-  addButtonNextToListen();
-  addlevelId();
-  startTiming();
-}
-
-
 function addlevelId() {
   levelId.setAttribute("class", "levelId");
   document.body.insertBefore(levelId, container);
   levelId.innerHTML="LEVEL "+(level+1);
+}
+
+function addButtonHome() {
+  buttonHome.setAttribute("id", "buttonHome");
+  document.getElementsByClassName("container")[0].appendChild(buttonHome);
+
 }
 
 function addButtonReplay() {
@@ -246,7 +255,7 @@ function addDisplay() {
   document.getElementsByClassName("container")[0].appendChild(display);
 }
 
-function addBlocksToListen() {
+function addBlocks() {
   if (blocksAdded===0) {
     var blockNumber = 36;
     for (var i=0; i<36; i++) {
@@ -298,7 +307,6 @@ function blocksStarter() {
 }
 
 function addEventListenerMouseDown(init) {
-  console.log("mousedown activated");
   init.addEventListener("mousedown", function() {
     color = this.id.replace("init", "").toLowerCase();
     this.className = "block"+" "+ color;
@@ -306,19 +314,58 @@ function addEventListenerMouseDown(init) {
 }
 
 function addEventListenerMouseOver() {
-  console.log("mouse over activated");
   blocksArray.forEach(function(block, i) {
     block.addEventListener("mouseover", function() {
       if(event.buttons === 1 &&
-        this.className!=="starter" &&
-        this.className==="block" &&
+        this.className!=="starter" && /*Means it is not the initial blocks*/
+        this.className==="block" && /*Means it is not been asigned any color*/
         (blocksArray[i-1] && blocksArray[i-1].className === "block"+" "+ color ||
           blocksArray[i-6] && blocksArray[i-6].className === "block"+" "+ color ||
           blocksArray[i+1].className === "block"+" "+ color ||
-          blocksArray[i+6].className === "block"+" "+ color)
+          blocksArray[i+6].className === "block"+" "+ color)/*To allow it move accordingly*/
         ) {
         this.className = "block"+" "+ color;
-        checkWin();
+        checkWin(); 
+      }
+    });
+  });
+}
+
+function addEventListenerMouseUp() {
+  blocksArray.forEach(function(block, i) {
+    block.addEventListener("mouseup", function() {
+      switch(true) {
+        case ((this.id!=="endRed")&& (blocksArray[initialPositions[level].initRed].className==="block red")):
+        reset(["red"]);
+        blocksArray[initialPositions[level].initRed].className==="starter";
+        break;
+        case ((this.id!=="endBlue")&& (blocksArray[initialPositions[level].initBlue].className==="block blue")):
+        reset(["blue"]);
+        blocksArray[initialPositions[level].initBlue].className==="starter";
+        break;
+        case ((this.id!=="endGreen")&&(blocksArray[initialPositions[level].initGreen].className==="block green")):
+        reset(["green"]);
+        blocksArray[initialPositions[level].initGreen].className==="starter";
+        break;
+        case ((this.id!=="endPurple")&&(blocksArray[initialPositions[level].initPurple].className==="block purple")):
+        reset(["purple"]);
+        blocksArray[initialPositions[level].initPurple].className==="starter";
+        break;
+        case ((this.id!=="endYellow")&&(blocksArray[initialPositions[level].initYellow].className==="block yellow")):
+        reset(["yellow"]);
+        blocksArray[initialPositions[level].initYellow].className==="starter";
+        break;
+        case ((this.id!=="endAqua")&&(blocksArray[initialPositions[level].initAqua].className==="block aqua")):
+        reset(["aqua"]);
+        blocksArray[initialPositions[level].initAqua].className==="starter";
+        break;
+        default:
+        blocksArray[initialPositions[level].initRed].className="starter";
+        blocksArray[initialPositions[level].initBlue].className="starter";
+        blocksArray[initialPositions[level].initGreen].className="starter";
+        blocksArray[initialPositions[level].initPurple].className="starter";
+        blocksArray[initialPositions[level].initYellow].className="starter";
+        blocksArray[initialPositions[level].initAqua].className="starter"; /*To allow check win works properly*/
       }
     });
   });
@@ -335,6 +382,7 @@ function checkWin() {
       display.setAttribute("class","display"+" win");
       buttonNext.setAttribute("class", "buttonNext"+" win");
       buttonReplay.setAttribute("class", "buttonReplay"+" win");
+      buttonHome.setAttribute("id","buttonHomeWin");
       popUpScreen.setAttribute("class", "popUpScreenWin");
     }
   }
@@ -357,19 +405,18 @@ function addButtonNextToListen() {
     blocksArray[initialPositions[level].initYellow].removeAttribute("id","initYellow");
     blocksArray[initialPositions[level].endYellow].removeAttribute("id","endYellow");
     blocksArray[initialPositions[level].initAqua].removeAttribute("id","initAqua");
-    blocksArray[initialPositions[level].endAqua].removeAttribute("id","endAqua");
+    blocksArray[initialPositions[level].endAqua].removeAttribute("id","endAqua");/*To remove all the old colors*/
     level++;
     levelId.innerHTML="LEVEL "+(level+1);
     popUpScreen.setAttribute("class","popUpScreen");
     if (level < 10) {
-      blocksStarter();
+      blocksStarter(); /*to re-assign the initial positions*/
     } else {
       result="win";
       showEndScreen();
     }
   })
 }
-
 
 function showEndScreen(){
   endScreen.setAttribute("id","endScreen");
@@ -383,12 +430,21 @@ function showEndScreen(){
 function addHomeButtonToListen() {
   blocksAdded=1;
   homeButton.addEventListener("click", function() {
+  console.log("clicked");
   document.getElementById("secondSplashScreen").style.display="unset";
   document.getElementById("splashscreen").style.display="unset";
   document.getElementById("endScreen").style.display="none";
   })
 }
 
+function addButtonHomeToListen() {
+  blocksAdded=1;
+  buttonHome.addEventListener("click", function() {
+  replay();
+  document.getElementById("secondSplashScreen").style.display="unset";
+  popUpScreen.setAttribute("class","popUpScreen");
+  })
+}
 
 function addButtonReplayToListen() {
   buttonReplay.addEventListener("click", function() {
@@ -402,6 +458,7 @@ function replay() {
   display.setAttribute("class","display");
   buttonNext.setAttribute("class", "buttonNext");
   buttonReplay.setAttribute("class", "buttonReplay");
+  buttonHome.setAttribute("id", "buttonHome");
   time=20;
   startTiming();
 }
@@ -446,46 +503,6 @@ function allowBackToListen() {
   }) 
 }
 
-function addEventListenerMouseUp() {
-  blocksArray.forEach(function(block, i) {
-    block.addEventListener("mouseup", function() {
-      switch(true) {
-        case ((this.id!=="endRed")&& (blocksArray[initialPositions[level].initRed].className==="block red")):
-        reset(["red"]);
-        blocksArray[initialPositions[level].initRed].className==="starter";
-        break;
-        case ((this.id!=="endBlue")&& (blocksArray[initialPositions[level].initBlue].className==="block blue")):
-        reset(["blue"]);
-        blocksArray[initialPositions[level].initBlue].className==="starter";
-        break;
-        case ((this.id!=="endGreen")&&(blocksArray[initialPositions[level].initGreen].className==="block green")):
-        reset(["green"]);
-        blocksArray[initialPositions[level].initGreen].className==="starter";
-        break;
-        case ((this.id!=="endPurple")&&(blocksArray[initialPositions[level].initPurple].className==="block purple")):
-        reset(["purple"]);
-        blocksArray[initialPositions[level].initPurple].className==="starter";
-        break;
-        case ((this.id!=="endYellow")&&(blocksArray[initialPositions[level].initYellow].className==="block yellow")):
-        reset(["yellow"]);
-        blocksArray[initialPositions[level].initYellow].className==="starter";
-        break;
-        case ((this.id!=="endAqua")&&(blocksArray[initialPositions[level].initAqua].className==="block aqua")):
-        reset(["aqua"]);
-        blocksArray[initialPositions[level].initAqua].className==="starter";
-        break;
-        default:
-        blocksArray[initialPositions[level].initRed].className="starter";
-        blocksArray[initialPositions[level].initBlue].className="starter";
-        blocksArray[initialPositions[level].initGreen].className="starter";
-        blocksArray[initialPositions[level].initPurple].className="starter";
-        blocksArray[initialPositions[level].initYellow].className="starter";
-        blocksArray[initialPositions[level].initAqua].className="starter";
-      }
-    });
-  });
-}
-
 function reset(colors) {
   colors.forEach(function(color,i) {
     blocksArray.forEach(function(block,i) {
@@ -494,23 +511,17 @@ function reset(colors) {
       }
     })
   })
-  console.log("i finished reset color");
 }
-
 
 $(function() {
   $('.start').click(function () {
     $(this).parent('#splashscreen').fadeOut(500);
-    console.log("clicked");
   });
 
   $('#secondSplashScreen').click(function () {
     $(this).fadeOut(500);
-    level=0;/**//**//**//**/
+    level=0;
     addContainer();
+    addAllEventListener();
   });
-  // $('homeButton').click(function () {
-  //   console.log("clicked");
-  //   $('#splashscreen').show();
-  // });
 });

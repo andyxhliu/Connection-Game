@@ -3,7 +3,7 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: 110%;
   background-repeat: no-repeat;
   background-position: center;
   color: white;
@@ -31,16 +31,6 @@ body {
 }
 
 .popUpScreen {
-  width: 500px;
-  height: 395px;
-  position: absolute;
-  float: left;
-  z-index: 999;
-  margin-top: -705px;
-  margin-left: 196px;
-  color: rgb(91, 0, 0);
-  padding-top: 90px;
-  text-align: center;
   display: none;
 }
 
@@ -51,7 +41,7 @@ body {
   float: left;
   z-index: 999;
   margin-top: -700px;
-  margin-left: 196px;
+  margin-left: 335px;
   color: rgb(91, 0, 0);
   padding-top: 90px;
   text-align: center;
@@ -69,7 +59,7 @@ body {
   float: left;
   z-index: 999;
   margin-top: -700px;
-  margin-left: 196px;
+  margin-left: 335px;
   color: rgb(91, 0, 0);
   padding-top: 90px;
   text-align: center;
@@ -439,13 +429,11 @@ p {
   transition-property: transform;
   -webkit-transform-origin: 0 100%;
   transform-origin: 0 100%;
-  /**/
 }
 
 .reset:hover, .reset:focus, .reset:active {
   -webkit-transform: skew(10deg);
   transform: skew(10deg);
-  /**/
 }
 
 
@@ -477,13 +465,11 @@ p {
   transition-property: transform;
   -webkit-transform-origin: 0 100%;
   transform-origin: 0 100%;
-  /**/
 }
 
 .help:hover, .help:focus, .help:active {
   -webkit-transform: skew(10deg);
   transform: skew(10deg);
-  /**/
 }
 
 .helpScreen {
@@ -522,13 +508,11 @@ p {
   transition-property: transform;
   -webkit-transform-origin: 0 100%;
   transform-origin: 0 100%;
-  /**/
 }
 
 .backButton:hover, .backButton:focus, .backButton:active {
   -webkit-transform: skew(10deg);
   transform: skew(10deg);
-  /**/
 }
 
 .blank {
@@ -537,8 +521,8 @@ p {
 
 .starter {
   display: inline-block;
-  width:80px;/**/
-  height: 80px;/**/
+  width:80px;
+  height: 80px;
   border: 2px solid rgb(22, 21, 45);
   border-radius: 10px;
   margin-bottom: -2px;
@@ -639,13 +623,11 @@ p {
   transition-property: transform;
   -webkit-transform-origin: 0 100%;
   transform-origin: 0 100%;
-  /**/
 }
 
 .buttonNext:hover, .buttonNext:focus, .buttonNext:active {
   -webkit-transform: skew(10deg);
   transform: skew(10deg);
-  /**/
 }
 
 .buttonNext.win {
@@ -676,13 +658,11 @@ p {
   transition-property: transform;
   -webkit-transform-origin: 0 100%;
   transform-origin: 0 100%;
-  /**/
 }
 
 .buttonReplay:hover, .buttonReplay:focus, .buttonReplay:active {
   -webkit-transform: skew(10deg);
   transform: skew(10deg);
-  /**/
 }
 
 .buttonReplay.win {
@@ -690,6 +670,43 @@ p {
   background-size: 90%;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+#buttonHome {
+  display: none;
+}
+
+#buttonHomeWin {
+  width: 55px;
+  height: 60px;
+  background:url("images/homeButton.png");
+  background-size: 90%;
+  background-position: center;
+  background-repeat: no-repeat;
+  float: right;
+  border: none;
+  margin-top: 20px;
+  margin-right: 50px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+
+#buttonHomeWin:hover, #buttonHomeWin:focus, #buttonHomeWin:active {
+  -webkit-transform: skew(10deg);
+  transform: skew(10deg);
 }
 
 .homeButton {
